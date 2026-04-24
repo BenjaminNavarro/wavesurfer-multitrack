@@ -160,9 +160,10 @@ class MultiTrack extends EventEmitter<MultitrackEvents> {
 
   private initAudio(track: TrackOptions): Promise<HTMLAudioElement | WebAudioPlayer> {
     const isIOS = /iPhone|iPad/.test(navigator.userAgent)
+    const isAndroid = /Android/.test(navigator.userAgent)
     const isPlaceholderTrack = track.id === PLACEHOLDER_TRACK.id
     const audio =
-      track.options?.media || (isIOS || isPlaceholderTrack ? new WebAudioPlayer(this.audioContext) : new Audio())
+      track.options?.media || (isIOS || isAndroid || isPlaceholderTrack ? new WebAudioPlayer(this.audioContext) : new Audio())
 
     audio.crossOrigin = 'anonymous'
 
