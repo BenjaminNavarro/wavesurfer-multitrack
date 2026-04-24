@@ -151,7 +151,7 @@ class MultiTrack extends EventEmitter<MultitrackEvents> {
     const placeholderAudioIndex = this.audios.findIndex((a) => a.src === PLACEHOLDER_TRACK.url)
     const placeholderAudio = this.audios[placeholderAudioIndex]
     if (placeholderAudio) {
-      ;(placeholderAudio as WebAudioPlayer & { duration: number }).duration = this.maxDuration
+      ; (placeholderAudio as WebAudioPlayer & { duration: number }).duration = this.maxDuration
       this.durations[placeholderAudioIndex] = this.maxDuration
     }
 
@@ -175,7 +175,7 @@ class MultiTrack extends EventEmitter<MultitrackEvents> {
 
     return new Promise<typeof audio>((resolve) => {
       if (!audio.src) return resolve(audio)
-      ;(audio as HTMLAudioElement).addEventListener('loadedmetadata', () => resolve(audio), { once: true })
+        ; (audio as HTMLAudioElement).addEventListener('loadedmetadata', () => resolve(audio), { once: true })
     })
   }
 
@@ -237,8 +237,8 @@ class MultiTrack extends EventEmitter<MultitrackEvents> {
           })
 
           // Allow resizing only from one side
-          startCueRegion.element.firstElementChild?.remove()
-          endCueRegion.element.lastChild?.remove()
+          startCueRegion.element?.firstElementChild?.remove()
+          endCueRegion.element?.lastChild?.remove()
 
           // Update the start and end cues on resize
           this.subscriptions.push(
@@ -263,10 +263,10 @@ class MultiTrack extends EventEmitter<MultitrackEvents> {
             color: this.options.trackBackground,
             drag: false,
           })
-          introRegion.element.querySelector('[part*="region-handle-left"]')?.remove()
-          ;(introRegion.element.parentElement as HTMLElement).style.mixBlendMode = 'plus-lighter'
+          introRegion.element?.querySelector('[part*="region-handle-left"]')?.remove()
+            ; (introRegion.element?.parentElement as HTMLElement).style.mixBlendMode = 'plus-lighter'
           if (track.intro.color) {
-            const rightHandle = introRegion.element.querySelector('[part*="region-handle-right"]') as HTMLElement
+            const rightHandle = introRegion.element?.querySelector('[part*="region-handle-right"]') as HTMLElement
             if (rightHandle) {
               rightHandle.style.borderColor = track.intro.color
             }
@@ -594,7 +594,7 @@ class MultiTrack extends EventEmitter<MultitrackEvents> {
   }
 
   public setTrackVolume(index: number, volume: number) {
-    ;(this.envelopes[index] || this.wavesurfers[index])?.setVolume(volume)
+    ; (this.envelopes[index] || this.wavesurfers[index])?.setVolume(volume)
   }
 
   public setTrackStartPosition(index: number, value: number) {
